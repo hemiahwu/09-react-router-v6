@@ -4,35 +4,35 @@
   height: 100%;
 }
 
-header {
+.root-layout header {
   padding: 20px;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav {
+.root-layout header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-nav h1 {
+.root-layout header nav h1 {
   margin: 0;
 }
 
-nav ul {
+.root-layout header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
 
-nav li {
+.root-layout header nav li {
   margin: 0 10px;
 }
 
-nav a {
+.root-layout header nav a {
   text-decoration: none;
   color: #000;
   font-weight: bold;
@@ -40,11 +40,81 @@ nav a {
   border-radius: 5px;
 }
 
-nav a:hover {
+.root-layout header nav a:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-nav a.active {
+.root-layout header nav a.active {
   background-color: #000;
   color: #fff;
+}
+
+.help-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.help-layout h2 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.help-layout nav {
+  display: flex;
+  justify-content: center;
+}
+
+.help-layout nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.help-layout nav li {
+  margin: 0 10px;
+}
+
+.help-layout nav a {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.help-layout nav a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.help-layout nav a.active {
+  background-color: #000;
+  color: #fff;
+}
+
+form {
+  margin-top: 30px;
+}
+form input,
+form label span,
+form textarea {
+  display: block;
+}
+form input,
+form textarea {
+  margin-bottom: 30px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 2px solid black;
+  width: 300px;
+  color: var(--secondary);
+}
+form label span {
+  margin-bottom: 10px;
 }

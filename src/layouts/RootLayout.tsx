@@ -14,6 +14,9 @@ export default function RootLayout() {
             <li>
               <NavLink to="/course">课程</NavLink>
             </li>
+            <li>
+              <NavLink to="/help">求助</NavLink>
+            </li>
           </ul>
         </nav>
       </header>
