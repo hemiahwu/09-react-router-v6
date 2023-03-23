@@ -1,5 +1,7 @@
 
 
+
+
 # React-Router-6
 
 
@@ -655,9 +657,9 @@ export default function Course() {
 }
 `````
 
-### 4. 路由参数
+## 第八章. 路由参数跳转
 
-* App.tsx
+### 1. App.tsx
 
 `````tsx
 <Route path="/course" element={<Course />}></Route>
@@ -665,7 +667,94 @@ export default function Course() {
 <Route path="/course/:id" element={<CourseDetail />}></Route>
 `````
 
+### 2. pages/CourseDetails.tsx
 
+`````tsx
+import React from 'react'
+
+export default function CourseDetail() {
+  return (
+    <div>
+      Hello
+    </div>
+  )
+}
+`````
+
+### 3. 商品跳转 -> 详情
+
+``````tsx
+ <Link to={`/course/${id}`}>
+            <article key={id} className="menu-item">
+``````
+
+
+
+### 4. 布局详情
+
+* 获取id
+
+`````tsx
+const { id } = useParams();
+
+import { useParams } from "react-router-dom";
+`````
+
+* 根据id请求数据
+
+`````tsx
+const [course, setCourse] = useState<Course>();
+`````
+
+`````tsx
+interface Course {
+  id: number;
+  img: string;
+  link: string;
+  price: string;
+  title: string;
+  desc: string;
+  category: string;
+}
+`````
+
+* 请求
+
+`````tsx
+import axios from "axios";
+`````
+
+`````tsx
+useEffect(() => {
+    axios
+      .get("https://www.thenewstep.cn/backend/8015/api/data/" + id)
+      .then((res) => {
+        setCourse(res.data);
+      });
+  }, []);
+`````
+
+* 渲染
+
+``````tsx
+<div className="section-center">
+  {course && (
+    <>
+      <div className="item-info">
+        <Link to="/course" className="back-button">
+          返回
+        </Link>
+        <h4>课程标题: {course.title}</h4>
+
+        <p className="item-text">课程描述: {course.desc}</p>
+        <Link className="btn" to={course.link}>
+          观看课程
+        </Link>
+      </div>
+    </>
+  )}
+</div>
+``````
 
 
 
