@@ -118,3 +118,103 @@ form textarea {
 form label span {
   margin-bottom: 10px;
 }
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1280px;
+  display: grid;
+  justify-items: center;
+  gap: 3rem 2rem;
+  margin-top: 2rem;
+}
+
+.menu-item {
+  display: grid;
+  gap: 1rem 2rem;
+  max-width: 25rem;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s linear;
+  margin-top: 2rem;
+}
+
+.menu-item:hover .photo {
+  transform: scale(1.1);
+}
+
+.photo {
+  width: 100%;
+  display: block;
+  transition: all 0.3s linear;
+}
+
+.item-info {
+  padding: 1rem;
+}
+
+.item-info header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.item-info h4 {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.item-info .price {
+  color: #d02f2f;
+}
+
+.item-text {
+  margin-bottom: 1rem;
+  color: #6b6b6b;
+  font-size: 0.9rem;
+}
+
+.btn {
+  display: inline-block;
+  background: #d02f2f;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s linear;
+  text-decoration: none;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.btn:hover {
+  background: #800000;
+}
+
+@media screen and (min-width: 768px) {
+  .section-center {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .section-center {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.back-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
