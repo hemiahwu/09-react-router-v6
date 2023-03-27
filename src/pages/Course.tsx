@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 interface Course {
   id: number;
@@ -13,19 +13,13 @@ interface Course {
 }
 
 export default function Course() {
-  const [items, setItems] = useState<Course[]>([]);
-
-  useEffect(() => {
-    axios.get("https://www.thenewstep.cn/backend/8015/api/data").then((res) => {
-      setItems(res.data);
-    });
-  });
+  const items = useLoaderData() as Course[];
   return (
     <div className="section-center">
       {items.map((course) => {
         const { id, title, img, desc, price } = course;
         return (
-          <Link to={`/course/${id}`}>
+          <Link key={id} to={`/course/${id}`}>
             <article key={id} className="menu-item">
               <img src={img} alt={title} className="photo" />
               <div className="item-info">
@@ -42,3 +36,11 @@ export default function Course() {
     </div>
   );
 }
+
+export const courseLoader = async () => {
+  const res = await axios.get(
+    "https://www.thenewstep.cn/backend/8015/api/data"
+  );
+
+  return res.data;
+};

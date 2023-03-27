@@ -758,7 +758,87 @@ useEffect(() => {
 
 
 
+## 第九章 loader
 
+### 1. Course.tsx
+
+``````tsx
+export const courseLoader = async () => {
+  const res = await axios.get(
+    "https://www.thenewstep.cn/backend/8015/api/data"
+  );
+  return res.data;
+};
+``````
+
+
+
+### 2. App.tsx
+
+````tsx
+<Route path="/course" element={<Course />} loader={courseLoader}></Route>
+````
+
+
+
+### 3. Course.tsx
+
+``````tsx
+export default function Course() {
+  // 加载数据
+  const items = useLoaderData() as Course[];
+
+  return (
+    <div className="section-center">
+      {items.map((course) => {
+        const { id, title, img, desc, price } = course;
+        return (
+          // 设置id
+          <Link key={id} to={`/course/${id}`}>
+            ....
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+``````
+
+
+
+### 4. CourseDetail.tsx
+
+`````tsx
+export default function CourseDetail() {
+  // 1. 获取
+  const course = useLoaderData() as Course;
+
+  return (
+    <div className="section-center">
+      ....
+    </div>
+  );
+}
+
+// 2. loader
+export const courseDetailLoader = async ({ params }: any) => {
+  const { id } = params as { id: number };
+  console.log(id);
+  const res = await axios.get(
+    "https://www.thenewstep.cn/backend/8015/api/data/" + id
+  );
+  return res.data;
+};
+`````
+
+### 5. App.tsx
+
+`````tsx
+     path="/course/:id"
+    element={<CourseDetail />}
+    loader={courseDetailLoader}
+  ></Route>
+`````
 
 
 

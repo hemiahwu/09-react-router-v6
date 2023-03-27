@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
 
 interface Course {
@@ -13,16 +13,7 @@ interface Course {
 }
 
 export default function CourseDetail() {
-  const [course, setCourse] = useState<Course>();
-  const { id } = useParams();
-
-  useEffect(() => {
-    axios
-      .get("https://www.thenewstep.cn/backend/8015/api/data/" + id)
-      .then((res) => {
-        setCourse(res.data);
-      });
-  }, []);
+  const course = useLoaderData() as Course;
 
   return (
     <div className="section-center">
@@ -44,3 +35,12 @@ export default function CourseDetail() {
     </div>
   );
 }
+
+export const courseDetailLoader = async ({ params }: any) => {
+  const { id } = params as { id: number };
+  const res = await axios.get(
+    "https://www.thenewstep.cn/backend/8015/api/data/" + id
+  );
+
+  return res.data;
+};
