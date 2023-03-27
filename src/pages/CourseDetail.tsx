@@ -42,5 +42,9 @@ export const courseDetailLoader = async ({ params }: any) => {
     "https://www.thenewstep.cn/backend/8015/api/data/" + id
   );
 
+  if (res.data == "") {
+    throw Error("找不到该课程");
+  }
+
   return res.data;
 };

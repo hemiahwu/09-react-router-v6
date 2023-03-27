@@ -842,7 +842,54 @@ export const courseDetailLoader = async ({ params }: any) => {
 
 
 
+## 第十章 routeError
 
+### 1. CourseDetail.tsx
+
+`````tsx
+export const courseDetailLoader = async ({ params }: any) => {
+ ...
+
+  console.log(res);
+
+  if (res.data == "") {
+    throw Error("找不到该课程");
+  }
+  return res.data;
+};
+`````
+
+### 2. App.tsx
+
+`````tsx
+<Route
+  ...
+  errorElement={<ErrorPage />}
+></Route>
+`````
+
+### 3. ErrorPage.tsx
+
+`````tsx
+import React from "react";
+import { Link, useRouteError } from "react-router-dom";
+
+interface RouteError {
+  message: string;
+}
+
+export default function ErrorPage() {
+  const error = useRouteError() as RouteError;
+  console.log(error);
+  return (
+    <div>
+      <h2>Error</h2>
+      <p>{error.message}</p>
+      <Link to="/">回到首页</Link>
+    </div>
+  );
+}
+`````
 
 
 

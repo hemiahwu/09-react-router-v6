@@ -9,6 +9,7 @@ import HelpLayout from "./layouts/HelpLayout";
 import RootLayout from "./layouts/RootLayout";
 import Course, { courseLoader } from "./pages/Course";
 import CourseDetail, { courseDetailLoader } from "./pages/CourseDetail";
+import ErrorPage from "./pages/ErrorPage";
 import Contact from "./pages/help/Contact";
 import Faq from "./pages/help/Faq";
 import Home from "./pages/Home";
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         path="/course/:id"
         element={<CourseDetail />}
         loader={courseDetailLoader}
+        errorElement={<ErrorPage />}
       ></Route>
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} /> {/* /help/faq */}
